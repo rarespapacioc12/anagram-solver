@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anagram Solver cu Enchant</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 50px auto; text-align: center; background-color: #f9f9f9; }
+        .container { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        input { padding: 12px; font-size: 16px; border: 2px solid #ddd; border-radius: 5px; width: 60%; }
+        button { padding: 12px 25px; font-size: 16px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; transition: background 0.3s;}
+        button:hover { background-color: #0056b3; }
+        ul { list-style-type: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        li { background: #eef2f5; padding: 10px 20px; border-radius: 20px; font-weight: bold; color: #333; }
+        .error { color: #dc3545; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Anagram Solver</h1>
+
+        <form method="POST">
+            <input type="text" name="word" placeholder="Enter the letters..." value="{{ cautare }}" required autocomplete="off">
+            <button type="submit">Search</button>
+        </form>
+        {% if search %}
+            <h3>Anagrams for "<span style="color:#007bff">{{ search }}</span>":</h3>
+            
+            {% if anagrams %}
+                <ul>
+                    {% for wd in anagrams %}
+                        <li>{{ wd }}</li>
+                    {% endfor %}
+                </ul>
+                <p><small> {{ anagrams|length }} anagrams found.</small></p>
+            {% else %}
+                <p style="color: #666;">No valid word found in the dictionary.</p>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
